@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>瓦片测试</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .tile-test { display: inline-block; margin: 10px; text-align: center; }
+        .tile-test img { border: 1px solid #ccc; display: block; }
+        .tile-info { font-size: 12px; color: #666; margin-top: 5px; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>地图瓦片测试</h1>
+    <p>测试本地瓦片文件是否可以正常访问...</p>
+    
+    <div id="test-results"></div>
+    
+    <script>
+        // 测试几个不同缩放级别的瓦片
+        const testTiles = [
+            { z: 10, x: 853, y: 419 },
+            { z: 11, x: 1706, y: 838 },
+            { z: 12, x: 3412, y: 1676 },
+            { z: 13, x: 6824, y: 3352 }
+        ];
+        
+        const resultsContainer = document.getElementById('test-results');
+        
+        testTiles.forEach(tile => {
+            const tileDiv = document.createElement('div');
+            tileDiv.className = 'tile-test';
+            
+            const img = document.createElement('img');
+            img.width = 100;
+            img.height = 100;
+            img.src = `/MAP_zxy/${tile.z}/${tile.x}/${tile.y}.png`;
+            
+            const info = document.createElement('div');
+            info.className = 'tile-info';
+            info.textContent = `Z:${tile.z} X:${tile.x} Y:${tile.y}`;
+            
+            img.onload = function() {
+                info.innerHTML += '<br><span class="success">✓ 加载成功</span>';
+            };
+            
+            img.onerror = function() {
+                info.innerHTML += '<br><span class="error">✗ 加载失败</span>';
+                img.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==';
+            };
+            
+            tileDiv.appendChild(img);
+            tileDiv.appendChild(info);
+            resultsContainer.appendChild(tileDiv);
+        });
+    </script>
+</body>
+</html>

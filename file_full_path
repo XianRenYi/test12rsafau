@@ -1,0 +1,23 @@
+onBeforeUnmount(() => {
+  if (map) {
+    map.destroy();
+    map = null;
+  }
+  console.log("map销毁完成", map);
+
+  if (tempChartRef.value) {
+    echarts.dispose(tempChartRef.value);
+  }
+  if (humidityChartRef.value) {
+    echarts.dispose(humidityChartRef.value);
+  }
+  if (pm1ChartRef.value) {
+    echarts.dispose(pm1ChartRef.value);
+  }
+  if (pm25ChartRef.value) {
+    echarts.dispose(pm25ChartRef.value);
+  }
+  if (pm10ChartRef.value) {
+    echarts.dispose(pm10ChartRef.value);
+  }
+});

@@ -1,0 +1,7 @@
+{
+    "type":"FeatureCollection", "features": [
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[121.57605318350262,29.84480421358972]},"properties":{"OBJECTID":1}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[121.56400787415961,29.846689344125743]},"properties":{"OBJECTID":2}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[121.5668979072455,29.846608640258008]},"properties":{"OBJECTID":3}}
+
+]}
